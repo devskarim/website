@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kitoblar ro'yxati</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4a90e2;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .book-card {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+
+        .book-card h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .book-card h3 {
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+            font-weight: 400;
+            color: #777;
+        }
+
+        .book-card p {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        .book-card .price {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #4a90e2;
+            font-size: 1.1rem;
+        }
+
+        .add-link {
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .add-link a {
+            text-decoration: none;
+            background-color: #4a90e2;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        .add-link a:hover {
+            background-color: #357ABD;
+        }
+
+        @media(max-width: 600px){
+            header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Kitoblar Ro'yxati</h1>
+    </header>
+
+    <div class="container">
+        <div class="book-card">
+            <h2>Kitob 1</h2>
+            <h3>Muallif 1</h3>
+            <p>Bu kitob tavsifi qisqacha yoziladi. Kitobning mazmuni haqida umumiy ma'lumot.</p>
+            <div class="price">Narxi: $10</div>
+        </div>
+        <!-- Qo'shimcha kitoblar shu yerga qo'shiladi -->
+    </div>
+
+    <div class="add-link">
+        <a href="{% url 'add_book' %}">Yangi kitob qo'shish</a>
+    </div>
+
+</body>
+</html>
