@@ -108,16 +108,17 @@
     <header>
         <h1>Kitoblar Ro'yxati</h1>
     </header>
-
+    {% for i in book %}
     <div class="container">
         <div class="book-card">
-            <h2>Kitob 1</h2>
-            <h3>Muallif 1</h3>
-            <p>Bu kitob tavsifi qisqacha yoziladi. Kitobning mazmuni haqida umumiy ma'lumot.</p>
-            <div class="price">Narxi: $10</div>
+            <h2>{{ i.title }}</h2>
+            <h3>{{ i.author }}</h3>
+            <p>{{ i.desc }}</p>
+            <div class="price">{{ i.price }}</div>
         </div>
         <!-- Qo'shimcha kitoblar shu yerga qo'shiladi -->
     </div>
+    {% endfor %}
 
     <div class="add-link">
         <a href="{% url 'add_book' %}">Yangi kitob qo'shish</a>

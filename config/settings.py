@@ -105,7 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'UZ'
 
-TIME_ZONE = 'Asia / Tashkent'
+TIME_ZONE = 'Asia/Tashkent'
 
 USE_I18N = True
 
