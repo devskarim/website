@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Kitob qo'shish</title>
@@ -9,25 +10,30 @@
             background-color: #f0f2f5;
             padding: 50px;
         }
+
         h1 {
             text-align: center;
             color: #333;
         }
+
         form {
             max-width: 500px;
             margin: 0 auto;
             background: #fff;
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        input[type="text"], textarea {
+
+        input[type="text"],
+        textarea {
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
             border-radius: 5px;
             border: 1px solid #ccc;
         }
+
         button {
             background-color: #4CAF50;
             color: white;
@@ -36,9 +42,11 @@
             border-radius: 5px;
             cursor: pointer;
         }
+
         button:hover {
             background-color: #45a049;
         }
+
         .link {
             text-align: center;
             margin-top: 20px;
@@ -48,31 +56,95 @@
             display: inline-block;
             margin-left: 650px;
         }
+
         .link a {
             color: #ffff;
             text-decoration: none;
         }
 
 
-        button a{
+        button a {
             color: white;
             text-decoration: none;
         }
+
         .link a:hover {
             text-decoration: underline;
         }
+
+        .error {
+            color: #b71c1c;
+            margin-top: 4px;
+            font-size: 0.9rem;
+        }
+
+        .non-field-errors {
+            background: #ffecec;
+            padding: 8px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+
+        .form-row {
+            margin-bottom: 14px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background: #4caf50;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #43a047;
+        }
     </style>
 </head>
+
 <body>
 
     <h1>Yangi Kitob Qo'shish</h1>
 
     <form action="{% url 'add_book' %}" method="post">
         {% csrf_token %}
-        <input type="text" placeholder="Kitob nomi" name="title" required>
-        <input type="text" placeholder="Muallif" name="author" required>
-        <textarea placeholder="Kitob tavsifi" rows="5" required name="desc"></textarea>
-        <input type="text"  name="price" placeholder="Narxi">
+
+        {% if form.non_field_errors %}
+        <div class="error non-field-errors">
+            {% for err in form.non_field_errors %}<p>{{ err }}</p>{% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="form-row">
+            {{ form.title }}
+            {% for e in form.title.errors %}<div class="error">{{ e }}</div>{% endfor %}
+        </div>
+
+        <div class="form-row">
+            {{ form.author }}
+            {% for e in form.author.errors %}<div class="error">{{ e }}</div>{% endfor %}
+        </div>
+
+        <div class="form-row">
+            {{ form.desc }}
+            {% for e in form.desc.errors %}<div class="error">{{ e }}</div>{% endfor %}
+        </div>
+
+        <div class="form-row">
+            {{ form.price }}
+            {% for e in form.price.errors %}<div class="error">{{ e }}</div>{% endfor %}
+        </div>
+
         <button type="submit">Saqlash</button>
     </form>
 
@@ -80,5 +152,7 @@
         <a href="/">Kitoblar ro'yxatiga o'tish</a>
     </div>
 
+
 </body>
+
 </html>

@@ -1,38 +1,38 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from .models import Book
 from .forms import BookForm 
 
 def home(request): 
-	form = BookForm()
-	book = Book.objects.all()
-
-	context  = {
-		"form": form,
-		"book": book
-	}
-	return render(request, 'index.html', context=context)
+    form = BookForm()
+    books = Book.objects.all()
+    context  = {
+        "form": form,
+        "books": books
+    }
+    return render(request, 'index.html', context=context)
 
 
 def add_book(request): 
-	form = BookForm()
-	book = Book.objects.all()
+    form = BookForm()
+    books = Book.objects.all()
 
-	if request.method == "POST": 
-		data = BookForm(request.POST)
-		if data.is_valid():
-			Book.objects.create(
-				title = data.cleaned_data.get('title'),
-				author = data.cleaned_data.get('author'),
-				desc = data.cleaned_data.get('desc'),
-				price = data.cleaned_data.get('price')
-			)
-			return redirect('/')
-		else: 
-			form = Book.objects.all()
+    if request.method == "POST":
+        form = BookForm(request.POST)
+        if form.is_valid():
+            Book.objects.create(
+                title=form.cleaned_data.get('title'),
+                author=form.cleaned_data.get('author'),
+                desc=form.cleaned_data.get('desc'),
+                price=form.cleaned_data.get('price')
+            )
+            return redirect('/') 
 
-	
-	context  = {
-		"form": form,
-		"book": book
-	}
-	return render(request, 'add.html', context=context)
+    context = {
+        "form": form,
+        "books": books
+    }
+    return render(request, 'add.html', context=context)
+
+def book_list(request):
+    books = Book.objects.all()
+    return render(request, 'book_list.html', {'book': books})
